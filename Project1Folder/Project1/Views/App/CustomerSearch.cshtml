@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ModelsLibrary.Customers>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search Customers</h2>
+
+<form asp-controller="App" asp-action="CustomerSearch">
+    <p>
+        Name: <input type="text" name="SearchString" method="get" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerLastName)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerLastName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-controller="App" asp-action="MainMenu">Back Main Menu</a>
+</div>

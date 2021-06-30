@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ModelsLibrary.Products>
+@using ModelsLibrary
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Your Current Shopping Cart</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ShoppingCart.shoppingCartProductList)
+        {
+        <tr>
+            <td>
+                @item.ProductName
+            </td>
+            <td>
+                @item.ProductPrice
+            </td>
+            <td>
+                <a asp-action="RemoveFromCart" asp-route-id="@item.ProductID">Remove from cart</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-controller="App" asp-action="Checkout">Checkout</a>
+</div>
+<div>
+    <a asp-controller="App" asp-action="LocationsListShop">Shop</a>
+</div>
+<div>
+    <a asp-controller="App" asp-action="MainMenu">Back to Main Menu</a>
+</div>

@@ -1,0 +1,37 @@
+﻿@model ModelsLibrary.Customers
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h6 id="Error">@Html.ValidationMessage("Error")</h6> @*trying to display as red not working atm*@
+
+<h1>Existing Customer Login</h1>
+
+<h4>Enter your customer id to login</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="CustomerID" class="control-label"></label>
+                    <input asp-for="CustomerID" class="form-control" />
+                    <span asp-validation-for="CustomerID" class="text-danger"></span>*@
+                <td>@Html.LabelFor(a => a.CustomerID)</td>
+                <td>@Html.TextBoxFor(a => a.CustomerID)</td>
+            </div>
+            <div>@Html.ValidationMessageFor(a => a.CustomerID)</div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

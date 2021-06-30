@@ -1,0 +1,42 @@
+﻿@model ModelsLibrary.Customers
+
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    ViewData["Title"] = "Main Menu";
+
+}
+
+@*<h1>Welcome to the Main Menu @Html.DisplayFor(Customers => Customers.CustomerFirstName) @Html.DisplayFor(Customers => Customers.CustomerLastName), ID# @Html.DisplayFor(Customers => Customers.CustomerID)</h1>*@
+<h1> Welcom to the Main Menu @HttpContextAccessor.HttpContext.Session.GetString("firstName") @HttpContextAccessor.HttpContext.Session.GetString("lastName") ID#@HttpContextAccessor.HttpContext.Session.GetInt32("id") </h1>
+
+<div>
+    <a asp-controller="App" asp-action="LocationsListShop">Stores</a>
+</div>
+
+<div>
+    <a asp-controller="App" asp-action="Cart">Cart</a>
+</div>
+
+<div>
+    <a asp-controller="App" asp-action="Checkout">Checkout</a>
+</div>
+
+<div>
+    <a asp-controller="App" asp-action="CustomerOrderHistory">User Order History</a>
+</div>
+
+<div>
+    <a asp-controller="App" asp-action="LocationsListHistory">Location Order History</a>
+</div>
+
+<div>
+    <a asp-controller="App" asp-action="CustomerSearch">Search Customer Datatbase</a>
+</div>
+
+<div>
+    <a asp-controller="App" asp-action="Logout">Logout</a>
+</div>

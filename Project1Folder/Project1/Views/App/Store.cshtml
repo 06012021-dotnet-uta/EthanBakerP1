@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ModelsLibrary.StoreModel>
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventoryAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            if (item.LocationID == @HttpContextAccessor.HttpContext.Session.GetInt32("locationId"))
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InventoryAmount)
+            </td>
+            <td>
+                <a asp-action="AddToCart" asp-route-id="@item.ProductID">Add to cart</a>
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="App" asp-action="LocationsListShop">Back to Locations</a>
+</div>
